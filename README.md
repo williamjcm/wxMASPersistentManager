@@ -9,7 +9,7 @@ The program will need to be built from source for Linux and macOS.
 ## Building from source
 1. Clone the repository.
 2. Install the required dependencies (`g++`, `make`, wxWidgets 3.0 or higher):
-    1. On MSYS2: `pacman -Syu mingw-w64-<arch>-toolchain mingw-w64-<arch>-wxWidgets` (replace `<arch>` with either `i686` or `x86_64`, depending on which architecture you want to build for).
+    1. On MSYS2: `pacman -Syu mingw-w64-<arch>-toolchain mingw-w64-<arch>-wxWidgets` (replace `<arch>` with either `i686` or `x86_64`, depending on which architecture (32- or 64-bit, respectively) you want to build for).
     2. On Linux: `sudo apt install g++ make libwxgtk3.0-dev` (for Debian- and/or apt-based distros) or `pacman -Syu base-devel wxgtk` (for Arch Linux). Users of other distros will have to find which packages they need to install.
     3. On macOS: find a way to install `g++`, `make` and wxWidgets 3.0. I don't have a Mac, so I can't give instructions for that platform.
 3. Navigate to the directory where the source is located, then run `make`.
