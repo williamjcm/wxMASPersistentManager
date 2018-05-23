@@ -91,6 +91,6 @@ void MASPersistentManager::OpenFileManager()
 #elif defined __linux__
     wxExecute("xdg-open " + wxStandardPaths::Get().GetUserConfigDir() + "/.renpy/Monika\\ After\\ Story/", wxEXEC_ASYNC); // xdg-open is the best way of opening the default file manager on Linux.
 #elif defined __APPLE__
-    wxExecute("open " + m_SaveFolderStr, wxEXEC_ASYNC); // open is the macOS way of opening the Finder. NEEDS TESTING!
+    wxExecute("open " + wxGetHomeDir() + "/Library/RenPy/Monika\\ After\\ Story/", wxEXEC_ASYNC); // open is the macOS way of opening the Finder. NEEDS TESTING!
 #endif
 }
