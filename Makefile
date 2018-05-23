@@ -40,9 +40,9 @@ OBJDIR_RELEASE = obj/Release
 DEP_RELEASE = 
 OUT_RELEASE = bin/Release/wxMASPersistentManager
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)/GUI/EvtMainFrame.o $(OBJDIR_DEBUG)/GUI/MainFrame.o $(OBJDIR_DEBUG)/MyApp.o $(OBJDIR_DEBUG)/resource.o $(OBJDIR_DEBUG)/src/MASPersistentManager.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)/GUI/EvtMainFrame.o $(OBJDIR_DEBUG)/GUI/MainFrame.o $(OBJDIR_DEBUG)/MyApp.o $(OBJDIR_DEBUG)/src/MASPersistentManager.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)/GUI/EvtMainFrame.o $(OBJDIR_RELEASE)/GUI/MainFrame.o $(OBJDIR_RELEASE)/MyApp.o $(OBJDIR_RELEASE)/resource.o $(OBJDIR_RELEASE)/src/MASPersistentManager.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)/GUI/EvtMainFrame.o $(OBJDIR_RELEASE)/GUI/MainFrame.o $(OBJDIR_RELEASE)/MyApp.o $(OBJDIR_RELEASE)/src/MASPersistentManager.o
 
 all: debug release
 
@@ -69,9 +69,6 @@ $(OBJDIR_DEBUG)/GUI/MainFrame.o: GUI/MainFrame.cpp
 
 $(OBJDIR_DEBUG)/MyApp.o: MyApp.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c MyApp.cpp -o $(OBJDIR_DEBUG)/MyApp.o
-
-$(OBJDIR_DEBUG)/resource.o: resource.rc
-	gcc -x c -c -o $(OBJDIR_DEBUG)/resource.o /dev/null
 
 $(OBJDIR_DEBUG)/src/MASPersistentManager.o: src/MASPersistentManager.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/MASPersistentManager.cpp -o $(OBJDIR_DEBUG)/src/MASPersistentManager.o
@@ -104,9 +101,6 @@ $(OBJDIR_RELEASE)/GUI/MainFrame.o: GUI/MainFrame.cpp
 
 $(OBJDIR_RELEASE)/MyApp.o: MyApp.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c MyApp.cpp -o $(OBJDIR_RELEASE)/MyApp.o
-
-$(OBJDIR_RELEASE)/resource.o: resource.rc
-	gcc -x c -c -o $(OBJDIR_RELEASE)/resource.o /dev/null
 
 $(OBJDIR_RELEASE)/src/MASPersistentManager.o: src/MASPersistentManager.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/MASPersistentManager.cpp -o $(OBJDIR_RELEASE)/src/MASPersistentManager.o
