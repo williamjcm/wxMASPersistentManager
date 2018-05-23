@@ -2,7 +2,7 @@
 This program allows users of the Monika After Story mod to easily create and manage backups of their persistent save file, with a GUI built using wxWidgets 3.0.
 
 ## Getting the program
-Prebuilt, statically-linked 64-bit binaries are available for Windows, under the "Releases" section.
+Prebuilt, statically-linked 32- and 64-bit binaries are available for Windows, under the "Releases" section.
 
 The program will need to be built from source for Linux and macOS.
 
