@@ -25,7 +25,6 @@ class MASPersistentManager
     private:
         wxString m_SaveFolderStr; // wxDir has no way of getting the folder's full path, so it'll be stored here.
         wxDir m_SaveFolder;
-        bool m_IsFolderOpen;
 };
 
 #endif // MASPERSISTENTMANAGER_H
