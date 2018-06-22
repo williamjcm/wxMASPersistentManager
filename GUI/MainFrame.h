@@ -39,6 +39,7 @@ class MainFrame : public wxFrame
 		wxButton* m_buttonRestoreSelectedBackup;
 		wxButton* m_buttonDeleteSelectedBackup;
 		wxButton* m_buttonOpenSaveFolder;
+		wxButton* m_buttonCreateBackupZip;
 		wxStaticLine* m_staticline1;
 		wxStaticText* m_staticTextAbout;
 		
@@ -48,6 +49,7 @@ class MainFrame : public wxFrame
 		virtual void OnRestoreSelectedBackupButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnDeleteSelectedBackupButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnOpenSaveFolderButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCreateZipButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

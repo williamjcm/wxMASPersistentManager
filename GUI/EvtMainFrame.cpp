@@ -137,6 +137,24 @@ void EvtMainFrame::OnOpenSaveFolderButtonClick( wxCommandEvent& event )
     m_PersistentManager.OpenFileManager();
 }
 
+void EvtMainFrame::OnCreateZipButtonClick( wxCommandEvent& event )
+{
+    wxDateTime DateTime(wxGetUTCTimeMillis()); // Windows 10, Linux and macOS should use UTC time by default.
+    wxString CurrentDateTime = DateTime.Format("%Y-%m-%d_%H-%M-%S");
+
+    wxFileDialog ArchiveSaveDialog(this,
+                                   "Select where to save the archive",
+                                   wxGetCwd(),
+                                   "Persistents_" + CurrentDateTime + ".zip",
+                                   "Zip archives (*.zip)|*.zip",
+                                   wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+    int Result = ArchiveSaveDialog.ShowModal();
+    if(Result == wxID_OK)
+    {
+        m_PersistentManager.CreateBackupZip(ArchiveSaveDialog.GetPath());
+    }
+}
+
 void EvtMainFrame::RefreshPersistentList()
 {
     m_listBoxPersistents->Clear();

@@ -36,11 +36,14 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_buttonDeleteSelectedBackup = new wxButton( this, wxID_ANY, wxT("Delete selected persistent"), wxDefaultPosition, wxDefaultSize, 0 );
 	gSizerButtons->Add( m_buttonDeleteSelectedBackup, 0, wxALL|wxEXPAND, 5 );
 	
+	m_buttonOpenSaveFolder = new wxButton( this, wxID_ANY, wxT("Open save folder in a file manager"), wxDefaultPosition, wxDefaultSize, 0 );
+	gSizerButtons->Add( m_buttonOpenSaveFolder, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
+	
+	m_buttonCreateBackupZip = new wxButton( this, wxID_ANY, wxT("Archive persistents"), wxDefaultPosition, wxDefaultSize, 0 );
+	gSizerButtons->Add( m_buttonCreateBackupZip, 0, wxALL|wxALIGN_CENTER_VERTICAL|wxALIGN_CENTER_HORIZONTAL|wxEXPAND, 5 );
+	
 	
 	bMainSizer->Add( gSizerButtons, 0, wxEXPAND, 5 );
-	
-	m_buttonOpenSaveFolder = new wxButton( this, wxID_ANY, wxT("Open persistent folder in a file manager"), wxDefaultPosition, wxDefaultSize, 0 );
-	bMainSizer->Add( m_buttonOpenSaveFolder, 0, wxALL|wxEXPAND|wxALIGN_CENTER_HORIZONTAL, 5 );
 	
 	m_staticline1 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
 	bMainSizer->Add( m_staticline1, 0, wxEXPAND | wxALL, 5 );
@@ -63,6 +66,7 @@ MainFrame::MainFrame( wxWindow* parent, wxWindowID id, const wxString& title, co
 	m_buttonRestoreSelectedBackup->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnRestoreSelectedBackupButtonClick ), NULL, this );
 	m_buttonDeleteSelectedBackup->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnDeleteSelectedBackupButtonClick ), NULL, this );
 	m_buttonOpenSaveFolder->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnOpenSaveFolderButtonClick ), NULL, this );
+	m_buttonCreateBackupZip->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnCreateZipButtonClick ), NULL, this );
 }
 
 MainFrame::~MainFrame()
@@ -73,5 +77,6 @@ MainFrame::~MainFrame()
 	m_buttonRestoreSelectedBackup->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnRestoreSelectedBackupButtonClick ), NULL, this );
 	m_buttonDeleteSelectedBackup->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnDeleteSelectedBackupButtonClick ), NULL, this );
 	m_buttonOpenSaveFolder->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnOpenSaveFolderButtonClick ), NULL, this );
+	m_buttonCreateBackupZip->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( MainFrame::OnCreateZipButtonClick ), NULL, this );
 	
 }
