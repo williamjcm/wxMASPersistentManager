@@ -17,6 +17,6 @@ The program will need to be built from source for Linux and macOS.
 ### Notes:
 * Built binaries are found in `./bin/<Debug or Release>`.
 * Binaries will be dynamically-linked by default. To make a static build, change the following lines in the `Makefile`:
-    1. The line which starts with `CFLAGS` becomes  ```CFLAGS = -std=c++11 -Wall -Wno-write-strings `wx-config --cxxflags --unicode --version=3.0 --static```
-    2. The line which starts with `LDFLAGS` becomes  ```LDFLAGS = -static `wx-config --libs base,core --unicode --version=3.0 --static```
+    1. The line which starts with `CFLAGS` becomes  ```CFLAGS = -std=c++11 -Wall -Wno-write-strings `wx-config --cxxflags --unicode --version=3.0 --static` ```
+    2. The line which starts with `LDFLAGS` becomes  ```LDFLAGS = -static `wx-config --libs base,core --unicode --version=3.0 --static` ```
     * Static builds will only be possible if you have a static build of wxWidgets. MSYS2 provides one, for example.
