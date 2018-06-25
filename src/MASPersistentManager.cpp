@@ -108,4 +108,11 @@ void MASPersistentManager::CreateBackupZip(wxString FilePath)
         zip.PutNextEntry(*it);
         zip.Write(PersistentStream);
     }
+    
+    if(wxFileExists(m_SaveFolderStr + "db.mcal"))
+    {
+        wxFFileInputStream CalendarStream(m_SaveFolderStr + "db.mcal", "r");
+        zip.PutNextEntry("db.mcal");
+        zip.Write(CalendarStream);
+    }
 }
