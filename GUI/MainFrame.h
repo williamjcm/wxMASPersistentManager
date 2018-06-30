@@ -20,6 +20,7 @@
 #include <wx/sizer.h>
 #include <wx/statline.h>
 #include <wx/stattext.h>
+#include <wx/timer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -42,6 +43,7 @@ class MainFrame : public wxFrame
 		wxButton* m_buttonCreateBackupZip;
 		wxStaticLine* m_staticline1;
 		wxStaticText* m_staticTextAbout;
+		wxTimer m_timerRefresh;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnBackupMainPersistentButtonClick( wxCommandEvent& event ) { event.Skip(); }
@@ -50,6 +52,7 @@ class MainFrame : public wxFrame
 		virtual void OnDeleteSelectedBackupButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnOpenSaveFolderButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnCreateZipButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnAutoRefreshTimer( wxTimerEvent& event ) { event.Skip(); }
 		
 	
 	public:

@@ -13,6 +13,7 @@ MainFrame( parent )
     else
     {
         RefreshPersistentList();
+        m_timerRefresh.Start(1000);
     }
 }
 
@@ -153,6 +154,11 @@ void EvtMainFrame::OnCreateZipButtonClick( wxCommandEvent& event )
     {
         m_PersistentManager.CreateBackupZip(ArchiveSaveDialog.GetPath());
     }
+}
+
+void EvtMainFrame::OnAutoRefreshTimer( wxTimerEvent& event )
+{
+    RefreshPersistentList();
 }
 
 void EvtMainFrame::RefreshPersistentList()

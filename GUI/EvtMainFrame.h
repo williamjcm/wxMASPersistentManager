@@ -33,6 +33,7 @@ class EvtMainFrame : public MainFrame
 		void OnDeleteSelectedBackupButtonClick( wxCommandEvent& event );
 		void OnOpenSaveFolderButtonClick( wxCommandEvent& event );
 		void OnCreateZipButtonClick( wxCommandEvent& event );
+		void OnAutoRefreshTimer( wxTimerEvent& event );
 	public:
 		/** Constructor */
 		EvtMainFrame( wxWindow* parent );
