@@ -13,7 +13,7 @@ MainFrame( parent )
     else
     {
         RefreshPersistentList();
-        m_timerRefresh.Start(1000);
+        m_timerRefresh.Start(10000);
     }
 }
 
@@ -79,10 +79,41 @@ void EvtMainFrame::OnRenameSelectedBackupButtonClick( wxCommandEvent& event )
 
 void EvtMainFrame::OnRestoreSelectedBackupButtonClick( wxCommandEvent& event )
 {
-    wxString BackupName = m_listBoxPersistents->GetString(m_listBoxPersistents->GetSelection());
-    if(BackupName == "persistent")
+    int Selection = m_listBoxPersistents->GetSelection();
+    if(Selection == wxNOT_FOUND)
     {
-        ErrorMessage("You can't restore the main persistent.");
+        ErrorMessage("No persistent file is selected. Please select one.");
+    }
+    else
+    {
+        wxString BackupName = m_listBoxPersistents->GetString(m_listBoxPersistents->GetSelection());
+        if(BackupName == "persistent")
+        {
+            ErrorMessage("You can't restore the main persistent.");
+        }
+        else
+        {
+            wxMessageDialog DangerWarningDialog(this,
+                                                "This operation is potentially destructive and can cause loss of data.\n"
+                                                "Are you ABSOLUTELY sure you want to continue ?",
+                                                "Warning",
+                                                wxICON_EXCLAMATION|wxCENTRE|wxYES_NO);
+            int Result = DangerWarningDialog.ShowModal();
+            if(Result == wxID_YES)
+            {
+                m_PersistentManager.RestoreBackup(BackupName);
+                RefreshPersistentList();
+            }
+        }
+    }
+}
+
+void EvtMainFrame::OnDeleteSelectedBackupButtonClick( wxCommandEvent& event )
+{
+    int Selection = m_listBoxPersistents->GetSelection();
+    if(Selection == wxNOT_FOUND)
+    {
+        ErrorMessage("No persistent file is selected. Please select one.");
     }
     else
     {
@@ -94,41 +125,26 @@ void EvtMainFrame::OnRestoreSelectedBackupButtonClick( wxCommandEvent& event )
         int Result = DangerWarningDialog.ShowModal();
         if(Result == wxID_YES)
         {
-            m_PersistentManager.RestoreBackup(BackupName);
-            RefreshPersistentList();
-        }
-    }
-}
-
-void EvtMainFrame::OnDeleteSelectedBackupButtonClick( wxCommandEvent& event )
-{
-    wxMessageDialog DangerWarningDialog(this,
-                                        "This operation is potentially destructive and can cause loss of data.\n"
-                                        "Are you ABSOLUTELY sure you want to continue ?",
-                                        "Warning",
-                                        wxICON_EXCLAMATION|wxCENTRE|wxYES_NO);
-    int Result = DangerWarningDialog.ShowModal();
-    if(Result == wxID_YES)
-    {
-        wxString BackupName = m_listBoxPersistents->GetString(m_listBoxPersistents->GetSelection());
-        if(BackupName == "persistent")
-        {
-            wxMessageDialog PersistentDeletionWarning(this,
-                                                      "You have selected the main persistent file.\n"
-                                                      "Are you ABSOLUTELY sure you want to delete your current progress ?",
-                                                      "Warning",
-                                                      wxICON_EXCLAMATION|wxCENTRE|wxYES_NO|wxNO_DEFAULT);
-            int PersistentDeletionConfirmation = PersistentDeletionWarning.ShowModal();
-            if(PersistentDeletionConfirmation == wxID_YES)
+            wxString BackupName = m_listBoxPersistents->GetString(m_listBoxPersistents->GetSelection());
+            if(BackupName == "persistent")
+            {
+                wxMessageDialog PersistentDeletionWarning(this,
+                                                          "You have selected the main persistent file.\n"
+                                                          "Are you ABSOLUTELY sure you want to delete your current progress ?",
+                                                          "Warning",
+                                                          wxICON_EXCLAMATION|wxCENTRE|wxYES_NO|wxNO_DEFAULT);
+                int PersistentDeletionConfirmation = PersistentDeletionWarning.ShowModal();
+                if(PersistentDeletionConfirmation == wxID_YES)
+                {
+                    m_PersistentManager.DeleteBackup(BackupName);
+                    RefreshPersistentList();
+                }
+            }
+            else
             {
                 m_PersistentManager.DeleteBackup(BackupName);
                 RefreshPersistentList();
             }
-        }
-        else
-        {
-            m_PersistentManager.DeleteBackup(BackupName);
-            RefreshPersistentList();
         }
     }
 }
